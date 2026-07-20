@@ -1,0 +1,226 @@
+[
+  {
+    "id": "chatgpt-go",
+    "name": "ChatGPT Go",
+    "provider": "OpenAI",
+    "category": "individual",
+    "originalPrice": 8.00,
+    "finalPriceUSD": 10.00,
+    "finalPriceCUP": 7000,
+    "popular": false,
+    "description": "Una opción económica intermedia para usuarios que superan el límite del plan gratuito.",
+    "features": [
+      "Cuotas de mensajes ampliadas (mayor límite que el gratuito)",
+      "Acceso prioritario en horas pico",
+      "Modelos estándar incluidos (sin modelos de razonamiento)",
+      "Soporte para uso básico en el día a día"
+    ],
+    "color": "from-emerald-400 to-emerald-500"
+  },
+  {
+    "id": "chatgpt-plus",
+    "name": "ChatGPT Plus",
+    "provider": "OpenAI",
+    "category": "individual",
+    "originalPrice": 20.00,
+    "finalPriceUSD": 25.00,
+    "finalPriceCUP": 17500,
+    "popular": true,
+    "description": "El estándar dorado de la productividad personal con modelos de razonamiento y Deep Research.",
+    "features": [
+      "Acceso completo a GPT-5.5 y GPT-5.4",
+      "Función avanzada de Voz (Advanced Voice Mode)",
+      "Generación de imágenes fotorrealistas con DALL-E 3",
+      "Hasta 10 consultas de 'Deep Research' al mes",
+      "Uso y creación de GPTs personalizados y tienda oficial"
+    ],
+    "color": "from-emerald-500 to-teal-600"
+  },
+  {
+    "id": "chatgpt-pro-100",
+    "name": "ChatGPT Pro",
+    "provider": "OpenAI",
+    "category": "professional",
+    "originalPrice": 100.00,
+    "finalPriceUSD": 125.00,
+    "finalPriceCUP": 87500,
+    "popular": false,
+    "description": "Diseñado para profesionales que requieren capacidades de investigación avanzadas y mayor volumen de uso.",
+    "features": [
+      "Todo lo incluido en el plan Plus",
+      "Hasta 50 consultas de 'Deep Research' al mes",
+      "Acceso dedicado al modelo o1 Pro",
+      "Mayor velocidad de procesamiento y límites expandidos"
+    ],
+    "color": "from-emerald-600 to-emerald-800"
+  },
+  {
+    "id": "chatgpt-pro-200",
+    "name": "ChatGPT Pro Max",
+    "provider": "OpenAI",
+    "category": "professional",
+    "originalPrice": 200.00,
+    "finalPriceUSD": 250.00,
+    "finalPriceCUP": 175000,
+    "popular": false,
+    "description": "Para investigadores y creadores de contenido intensivo con necesidades de contexto masivo e investigación ilimitada.",
+    "features": [
+      "Consultas ilimitadas de 'Deep Research' al mes",
+      "Acceso prioritario casi ilimitado a GPT-5.5 Pro",
+      "Ventana de contexto ampliada a 1 Millón de tokens",
+      "Soporte exclusivo y procesamiento de nivel empresarial"
+    ],
+    "color": "from-teal-600 to-teal-900"
+  },
+  {
+    "id": "chatgpt-team",
+    "name": "ChatGPT Team",
+    "provider": "OpenAI",
+    "category": "team",
+    "originalPrice": 25.00,
+    "finalPriceUSD": 32.00,
+    "finalPriceCUP": 22400,
+    "popular": false,
+    "description": "Suscripción para equipos y empresas pequeñas. Requiere un mínimo de 2 licencias (Precio por usuario).",
+    "features": [
+      "Espacio de trabajo compartido exclusivo para el equipo",
+      "Consola de administración centralizada y facturación única",
+      "Mayor límite de mensajes para GPT-5.5",
+      "Garantía de privacidad (los datos no se usan para entrenamiento)",
+      "Autenticación de un solo paso (SSO) y herramientas de seguridad"
+    ],
+    "color": "from-cyan-500 to-blue-600"
+  },
+  {
+    "id": "gemini-ai-plus",
+    "name": "Gemini AI Plus",
+    "provider": "Google",
+    "category": "individual",
+    "originalPrice": 7.99,
+    "finalPriceUSD": 10.00,
+    "finalPriceCUP": 7000,
+    "popular": false,
+    "description": "Plan intermedio para disfrutar de modelos avanzados y la integración básica con Google Workspace.",
+    "features": [
+      "Acceso prioritario a Gemini 3.1 Pro",
+      "Integración nativa básica con Gmail y Google Docs",
+      "Función 'Deep Research' con límites de uso mensuales",
+      "15 GB de almacenamiento compartido en la nube"
+    ],
+    "color": "from-blue-400 to-blue-500"
+  },
+  {
+    "id": "gemini-ai-pro",
+    "name": "Gemini AI Pro",
+    "provider": "Google",
+    "category": "individual",
+    "originalPrice": 19.99,
+    "finalPriceUSD": 25.00,
+    "finalPriceCUP": 17500,
+    "popular": true,
+    "description": "El plan premium de Google ideal para creadores, programadores e integración extrema en el ecosistema.",
+    "features": [
+      "Acceso prioritario y límites 4 veces superiores para Gemini Pro",
+      "5 TB de almacenamiento en la nube en Google One",
+      "Gemini integrado en Gmail, Docs, Drive, Sheets y Slides",
+      "Suscripción de YouTube Premium Lite incluida",
+      "Acceso al agente de programación autónomo Jules",
+      "$10 USD mensuales en créditos para Google Cloud"
+    ],
+    "color": "from-blue-500 to-indigo-600"
+  },
+  {
+    "id": "gemini-ai-ultra",
+    "name": "Gemini AI Ultra",
+    "provider": "Google",
+    "category": "professional",
+    "originalPrice": 99.99,
+    "finalPriceUSD": 125.00,
+    "finalPriceCUP": 87500,
+    "popular": false,
+    "description": "El plan insignia de Google para desarrolladores senior y líderes de proyectos tecnológicos.",
+    "features": [
+      "Límites de cómputo y mensajes hasta 20 veces superiores al plan Pro",
+      "Entre 20 TB y 30 TB de almacenamiento masivo en la nube",
+      "Acceso exclusivo al modelo Gemini Spark de ultra-razonamiento",
+      "Suscripción de YouTube Premium (Individual) completa incluida",
+      "Acceso al entorno de desarrollo Google Antigravity",
+      "Suscripción de Google Home Premium Advanced incluida"
+    ],
+    "color": "from-indigo-600 to-purple-800"
+  },
+  {
+    "id": "claude-pro",
+    "name": "Claude Pro",
+    "provider": "Anthropic",
+    "category": "individual",
+    "originalPrice": 20.00,
+    "finalPriceUSD": 25.00,
+    "finalPriceCUP": 17500,
+    "popular": true,
+    "description": "La opción preferida para programadores avanzados y redactores de texto técnico de alta fidelidad.",
+    "features": [
+      "Acceso completo a Claude Sonnet 4.6 y Claude 3 Opus",
+      "Límite de mensajes 5 veces mayor que la versión gratuita",
+      "Función de Proyectos para organizar chats con archivos de referencia",
+      "Herramienta Claude Code integrada para desarrollo por consola",
+      "Crédito mensual equivalente a $20 USD para uso de APIs"
+    ],
+    "color": "from-orange-500 to-amber-600"
+  },
+  {
+    "id": "claude-max-5x",
+    "name": "Claude Max 5x",
+    "provider": "Anthropic",
+    "category": "professional",
+    "originalPrice": 100.00,
+    "finalPriceUSD": 125.00,
+    "finalPriceCUP": 87500,
+    "popular": false,
+    "description": "Para programadores y analistas de datos de alta frecuencia que agotan la cuota del plan Pro.",
+    "features": [
+      "Límite de mensajes 5 veces superior al de Claude Pro",
+      "Acceso garantizado durante picos de alto tráfico global",
+      "Crédito mensual equivalente a $100 USD para APIs y agentes",
+      "Soporte exclusivo y prioridad en la cola de procesamiento"
+    ],
+    "color": "from-orange-600 to-orange-800"
+  },
+  {
+    "id": "claude-max-20x",
+    "name": "Claude Max 20x",
+    "provider": "Anthropic",
+    "category": "professional",
+    "originalPrice": 200.00,
+    "finalPriceUSD": 250.00,
+    "finalPriceCUP": 175000,
+    "popular": false,
+    "description": "La máxima capacidad individual disponible. Ideal para operaciones independientes basadas en agentes de IA.",
+    "features": [
+      "Límite de mensajes 20 veces superior al plan Claude Pro",
+      "Crédito mensual equivalente a $200 USD para automatizaciones",
+      "Acceso inmediato a los modelos experimentales del laboratorio",
+      "El mayor ancho de banda y prioridad disponible a nivel de red"
+    ],
+    "color": "from-amber-600 to-amber-900"
+  },
+  {
+    "id": "claude-team-standard",
+    "name": "Claude Team Standard",
+    "provider": "Anthropic",
+    "category": "team",
+    "originalPrice": 25.00,
+    "finalPriceUSD": 32.00,
+    "finalPriceCUP": 22400,
+    "popular": false,
+    "description": "Colaboración y gestión avanzada para grupos de trabajo. Mínimo de 5 licencias (Precio por usuario).",
+    "features": [
+      "Espacio de trabajo colaborativo para todo el equipo",
+      "Controles administrativos, Single Sign-On (SAML SSO) y auditorías",
+      "Límites de mensajes muy superiores a las cuentas Pro",
+      "Consola de facturación centralizada",
+      "Políticas de privacidad empresariales nativas"
+    ],
+    "color": "from-orange-500 to-rose-600"
+  }
+]

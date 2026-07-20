@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* Global styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #090b11;
+  color: #f3f4f6;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Premium Mirror Card (Glassmorphism) with high contrast and thick responsive border */
+.mirror-card {
+  position: relative;
+  background: rgba(13, 17, 28, 0.7); /* More opaque for high contrast readability */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(255, 255, 255, 0.22); /* Stronger border line to prevent looking fragile */
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mirror-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Brand border hover effects */
+.mirror-card-openai:hover {
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  box-shadow: 0 25px 50px -12px rgba(52, 211, 153, 0.25), 
+              0 0 30px -3px rgba(52, 211, 153, 0.15);
+  transform: translateY(-4px);
+}
+
+.mirror-card-google:hover {
+  border-color: rgba(96, 165, 250, 0.6) !important;
+  box-shadow: 0 25px 50px -12px rgba(96, 165, 250, 0.25), 
+              0 0 30px -3px rgba(96, 165, 250, 0.15);
+  transform: translateY(-4px);
+}
+
+.mirror-card-anthropic:hover {
+  border-color: rgba(251, 146, 60, 0.6) !important;
+  box-shadow: 0 25px 50px -12px rgba(251, 146, 60, 0.25), 
+              0 0 30px -3px rgba(251, 146, 60, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Background Transition */
+.bg-transition {
+  transition: background-color 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-image 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scroll-Driven Animations (Entry Left/Right and Exit Upwards) */
+.scroll-reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left {
+  transform: translateX(-70px);
+}
+
+.reveal-right {
+  transform: translateX(70px);
+}
+
+.reveal-up {
+  transform: translateY(70px);
+}
+
+/* Active class when in viewport */
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translate(0) scale(1) !important;
+}
+
+/* Exit upwards class when scrolling past the section */
+.scroll-reveal.scrolled-up {
+  opacity: 0;
+  transform: translateY(-80px) !important;
+}
+
+/* Micro-animations and float effects */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.03); }
+}
+.animate-float {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 50s linear infinite;
+}
+
+/* Watermark animations & active section styles */
+.brand-watermark {
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active section outlines (Stronger demarcation) */
+.section-openai, .section-google, .section-anthropic {
+  transition: border-color 0.8s ease, box-shadow 0.8s ease, background-color 0.8s ease;
+  border-width: 2px !important;
+}
+
+.section-openai { border-color: rgba(255, 255, 255, 0.08) !important; }
+.section-google { border-color: rgba(255, 255, 255, 0.08) !important; }
+.section-anthropic { border-color: rgba(255, 255, 255, 0.08) !important; }
+
+/* Active States */
+.section-openai.active-section {
+  border-color: rgba(52, 211, 153, 0.3) !important;
+  box-shadow: 0 0 60px rgba(52, 211, 153, 0.08);
+  background-color: rgba(4, 18, 14, 0.4) !important;
+}
+.section-openai.active-section .brand-watermark {
+  opacity: 0.16 !important;
+  transform: scale(1.15) rotate(6deg) !important;
+}
+
+.section-google.active-section {
+  border-color: rgba(96, 165, 250, 0.3) !important;
+  box-shadow: 0 0 60px rgba(96, 165, 250, 0.08);
+  background-color: rgba(5, 15, 36, 0.4) !important;
+}
+.section-google.active-section .brand-watermark {
+  opacity: 0.16 !important;
+  transform: scale(1.15) translateY(-8px) !important;
+}
+
+.section-anthropic.active-section {
+  border-color: rgba(251, 146, 60, 0.3) !important;
+  box-shadow: 0 0 60px rgba(251, 146, 60, 0.08);
+  background-color: rgba(20, 11, 6, 0.4) !important;
+}
+.section-anthropic.active-section .brand-watermark {
+  opacity: 0.14 !important;
+  transform: scale(1.15) rotate(-6deg) !important;
+}
+
+/* Pulsing recommended card borders (Highly visual) */
+@keyframes pulse-openai {
+  0%, 100% { 
+    border-color: rgba(52, 211, 153, 0.5); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(52, 211, 153, 0.2), inset 0 0 12px rgba(52, 211, 153, 0.15); 
+  }
+  50% { 
+    border-color: rgba(52, 211, 153, 1); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(52, 211, 153, 0.6), inset 0 0 24px rgba(52, 211, 153, 0.3); 
+  }
+}
+.recommended-openai-pulse {
+  animation: pulse-openai 3s infinite ease-in-out;
+  border: 2px solid rgba(52, 211, 153, 0.9) !important;
+}
+
+@keyframes pulse-google {
+  0%, 100% { 
+    border-color: rgba(96, 165, 250, 0.5); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(96, 165, 250, 0.2), inset 0 0 12px rgba(96, 165, 250, 0.15); 
+  }
+  50% { 
+    border-color: rgba(96, 165, 250, 1); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(96, 165, 250, 0.6), inset 0 0 24px rgba(96, 165, 250, 0.3); 
+  }
+}
+.recommended-google-pulse {
+  animation: pulse-google 3s infinite ease-in-out;
+  border: 2px solid rgba(96, 165, 250, 0.9) !important;
+}
+
+@keyframes pulse-anthropic {
+  0%, 100% { 
+    border-color: rgba(251, 146, 60, 0.5); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(251, 146, 60, 0.2), inset 0 0 12px rgba(251, 146, 60, 0.15); 
+  }
+  50% { 
+    border-color: rgba(251, 146, 60, 1); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(251, 146, 60, 0.6), inset 0 0 24px rgba(251, 146, 60, 0.3); 
+  }
+}
+.recommended-anthropic-pulse {
+  animation: pulse-anthropic 3s infinite ease-in-out;
+  border: 2px solid rgba(251, 146, 60, 0.9) !important;
+}

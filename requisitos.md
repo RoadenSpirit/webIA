@@ -1,0 +1,62 @@
+# Requisitos y Control de Cambios - Proyecto webIA
+
+## Características Pendientes
+- [ ] Implementar el paquete `auto skills` de `midu dev`.
+*(Ninguna. ¡Todas las tareas planificadas han sido completadas con éxito!)*
+
+## Características Completadas
+- [x] Validar que en los selectores manuales solo se admitan números mayores que 0, restableciendo instantáneamente a 1 si se intenta introducir 0 o números negativos.
+- [x] Hacer editable el selector de créditos de OpenCode Zen, permitiendo escribir directamente cualquier cantidad manual de dólares (ej. $23) o incrementarla de 1 en 1, calculando dinámicamente el precio final con el 25% de recargo y su equivalencia en CUP.
+- [x] Cambiar "para resolver" por "en resolver" en la frase de presentación de la tienda en el bloque de contacto.
+- [x] Añadir los planes de OpenCode.ai en `planes.json`.
+- [x] Crear la nueva sección para OpenCode.ai en `index.astro` con su estilo, watermarks y tarjetas dinámicas.
+- [x] Optimizar iconos en la sección de ventajas de la IA (Creación de Contenido, Asesor Personal).
+- [x] Adaptar la tarjeta de Facebook del bloque de contacto para integrarla a la paleta púrpura global.
+- [x] Reestructurar la presentación de la empresa en la sección de contacto con el enfoque de la Opción 3 (tienda local de Camagüey de ropa, calzado y tecnología que se expande a servicios de IA).
+- [x] Implementar la funcionalidad interactiva de los botones (+ / -) en el selector de meses de las tarjetas de precios.
+- [x] Descarga de los logos oficiales de Google Drive al servidor.
+- [x] Configuración de `/logo-pequeno.png` como favicon en el Layout.
+- [x] Reemplazo inicial del logo de la cabecera por `/logo-en-blanco.png`.
+- [x] Aumentar el tamaño del logo en el Header (cabecera) para mejorar su legibilidad.
+- [x] Aumentar el tamaño del logo en el Hero para destacar la marca.
+- [x] Aumentar el tamaño del logo en el Footer (pie de página) para que sea claramente legible.
+- [x] Optimizar la visualización del logo circular en la sección de confianza.
+- [x] Eliminar el efecto hover y la sombra del logo en la sección Hero.
+- [x] Eliminar el texto "Carmay" y la insignia "IA" del Nav Bar al lado del logo para dejar únicamente el logo limpio y prominente.
+- [x] Eliminar la píldora/badge "La Revolución de la IA al Alcance de Cuba" en el Hero.
+- [x] Cambiar el mensaje del Hero por uno claro, directo y enfocado en el valor real de la productividad para todos en Cuba, eliminando palabras rebuscadas como "democratizamos".
+- [x] Corregir el formato de negritas (sustituir asteriscos `**` por etiquetas `<strong>` HTML) en el texto del Hero.
+- [x] Añadir una nueva sección breve debajo del Hero que resuma las áreas en las que la IA puede ayudar (estudios, oficina, programación, contenido, análisis, estrategia).
+- [x] Explicar el sistema de cuentas de Google (posesión exclusiva mientras se contrate el servicio) en las tarjetas de precios y sección "¿Cómo funciona?".
+- [x] Aclarar la duración mensual del servicio (ciclos de 30 días, pérdida automática de privilegios, necesidad de renovación previa y opción multi-mes) en tarjetas de precios y sección "¿Cómo funciona?".
+- [x] Añadir un selector elegante de cantidad de meses en cada tarjeta de precio de los planes.
+- [x] Actualizar dinámicamente en el cliente el precio total (USD/CUP) y el texto descriptivo del período elegido.
+- [x] Modificar reactivamente el enlace pre-configurado de WhatsApp para incluir la cantidad exacta de meses seleccionada y el monto total en el mensaje.
+- [x] Reemplazar el texto "Asesoría Gratuita" por "Consulta qué plan es mejor para ti" en la barra de navegación y el cajón de menú móvil.
+- [x] Modificar todos los textos de la web para enfocar el asesoramiento en la orientación directa y personalizada ("si no sabes qué elegir, te ayudamos a encontrar el plan ideal").
+- [x] Actualizar todos los enlaces y textos de WhatsApp preconfigurados para reflejar esta nueva intención de consulta personalizada.
+- [x] Crear un archivo JSON unificado `/src/data/planes.json` que almacene de manera centralizada la `tasaCambio` al inicio y la lista completa de planes con sus características y precios base en USD.
+- [x] Modificar `index.astro` para leer y calcular dinámicamente los precios en CUP (multiplicando USD * tasa de cambio) durante el tiempo de build.
+- [x] Crear un flujo automatizado en n8n (`Monitoreo Diario de Precios de IA`) que se ejecuta diariamente a las 12:00 AM (medianoche) para auditar de manera asíncrona mediante el agente CLI `agy` si existen cambios de tarifas oficiales en ChatGPT Plus, Claude Pro o Gemini Advanced.
+- [x] Configurar n8n para enviar una alerta inmediata a tu WhatsApp (a través de Green API) si el agente detecta alguna variación, permitiéndote auditarla y actualizar el JSON de forma segura.
+- [x] Eliminar por completo el método de pago 'MLC' de toda la web y ajustar los textos para reflejar únicamente efectivo en nuestra tienda, transferencia local o dólares (USD).
+- [x] Eliminar el botón 'Explorar Planes de IA' de la sección Hero.
+- [x] Reorganizar la cuadrícula de ventajas de la IA con enfoque comercial local:
+  - **Creación de Contenido:** Enfocado en la generación de pósteres, anuncios e imágenes de alta claridad.
+  - **Programación y Desarrollo:** Enfocado en la productividad exponencial destacando que Anthropic es el rey indiscutible en desarrollo y Claude Code es la herramienta más usada por programadores en todo el mundo.
+  - **Análisis y Estrategia de Negocio:** Integración del análisis empresarial y planificación estratégica.
+  - **Emprendimiento y Nuevos Negocios:** Redefinición de oficina/trabajo enfocado en startups, pequeños negocios y gestión interna (finanzas, RRHH).
+  - **Estudios y Aprendizaje:** Apoyo académico, traducción y disponibilidad de búsquedas avanzadas (Deep Research) para realizar cualquier tipo de investigación con máximo rigor.
+  - **Agente y Asesor Personal:** Uso de la IA como asistente personalizado con acceso a internet en tiempo real para delegar tareas.
+- [x] Cambiar el selector de meses de un menú desplegable de bloques fijos a un selector numérico elegante de cualquier cantidad de meses, manteniendo fija la palabra "meses".
+- [x] Rediseñar el selector de meses para convertirlo en un componente interactivo premium con botones personalizados de incremento y decremento (- / +) y sin las flechas nativas del navegador.
+- [x] Eliminar el texto de tasa fija de cambio (`Tasa Fija 700 x 1`) de todas las tarjetas para mantener el tipo de cambio privado.
+- [x] Reestructurar la sección de presentación y contacto de Carmay Outfit:
+  - Eliminadas las justificaciones defensivas ("no somos una empresa fantasma").
+  - Eliminado el bloque redundante "Activaciones Legales y Soporte Garantizado".
+  - Fusión de quiénes son, visión y trayectoria como la tienda más completa de Camagüey combinada con la evolución e innovación en la creación de nuevos productos tecnológicos (herramientas digitales propias para IA).
+  - Cambiada la etiqueta de teléfonos a *"Puedes contactarnos"*.
+  - Añadido un 5to bloque lateral de contacto ("Síguenos en nuestras redes") de ancho completo en desktop conteniendo el enlace directo a Facebook.
+  - Convertida la tarjeta de dirección física en un enlace directo a Google Maps.
+- [x] Regenerar el build de producción (`npm run build`).
+- [x] Ajustar permisos de archivos (`644`/`755`) en `public/` y `dist/` para Caddy.
