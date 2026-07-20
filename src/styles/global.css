@@ -1,0 +1,308 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
+}
+
+/* Global styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #090b11;
+  color: #f3f4f6;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Premium Mirror Card (Glassmorphism) with high contrast and thick responsive border */
+.mirror-card {
+  position: relative;
+  background: rgba(13, 17, 28, 0.7); /* More opaque for high contrast readability */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(255, 255, 255, 0.22); /* Stronger border line to prevent looking fragile */
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mirror-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Brand border hover effects */
+.mirror-card-openai:hover {
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  box-shadow: 0 25px 50px -12px rgba(52, 211, 153, 0.25), 
+              0 0 30px -3px rgba(52, 211, 153, 0.15);
+  transform: translateY(-4px);
+}
+
+.mirror-card-google:hover {
+  border-color: rgba(96, 165, 250, 0.6) !important;
+  box-shadow: 0 25px 50px -12px rgba(96, 165, 250, 0.25), 
+              0 0 30px -3px rgba(96, 165, 250, 0.15);
+  transform: translateY(-4px);
+}
+
+.mirror-card-anthropic:hover {
+  border-color: rgba(251, 146, 60, 0.6) !important;
+  box-shadow: 0 25px 50px -12px rgba(251, 146, 60, 0.25), 
+              0 0 30px -3px rgba(251, 146, 60, 0.15);
+  transform: translateY(-4px);
+}
+
+.mirror-card-opencode:hover {
+  border-color: rgba(129, 140, 248, 0.6) !important;
+  box-shadow: 0 25px 50px -12px rgba(129, 140, 248, 0.25), 
+              0 0 30px -3px rgba(129, 140, 248, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Navigation link hover underline animation */
+.nav-link-glow {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link-glow::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-glow:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Step cards "Cómo Funciona" hover effects */
+.step-card {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-card:hover {
+  border-color: rgba(109, 30, 104, 0.5) !important;
+  background: rgba(13, 17, 28, 0.8) !important;
+  box-shadow: 0 15px 35px -10px rgba(109, 30, 104, 0.15);
+  transform: translateY(-4px);
+}
+
+.step-card .step-number {
+  transition: all 0.4s ease;
+}
+
+.step-card:hover .step-number {
+  background-color: #6d1e68 !important;
+  color: #ffffff !important;
+  border-color: #922b8c !important;
+  box-shadow: 0 0 20px rgba(109, 30, 104, 0.6);
+  transform: scale(1.1);
+}
+
+/* Background Transition */
+.bg-transition {
+  transition: background-color 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-image 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scroll-Driven Animations (Entry Left/Right and Exit Upwards) */
+.scroll-reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left {
+  transform: translateX(-70px);
+}
+
+.reveal-right {
+  transform: translateX(70px);
+}
+
+.reveal-up {
+  transform: translateY(70px);
+}
+
+/* Active class when in viewport */
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translate(0) scale(1) !important;
+}
+
+/* Exit upwards class when scrolling past the section */
+.scroll-reveal.scrolled-up {
+  opacity: 0;
+  transform: translateY(-80px) !important;
+}
+
+/* Micro-animations and float effects */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.03); }
+}
+.animate-float {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 50s linear infinite;
+}
+
+/* Watermark animations & active section styles */
+.brand-watermark {
+  opacity: 0.15; /* Increased default subtle opacity */
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active section outlines (Stronger demarcation) */
+.section-openai, .section-google, .section-anthropic, .section-opencode {
+  transition: border-color 0.8s ease, box-shadow 0.8s ease, background-color 0.8s ease;
+  border-width: 2px !important;
+  isolation: isolate; /* Force new stacking context to keep negative z-index watermarks in front of section background */
+}
+
+.section-openai { border-color: rgba(255, 255, 255, 0.08) !important; }
+.section-google { border-color: rgba(255, 255, 255, 0.08) !important; }
+.section-anthropic { border-color: rgba(255, 255, 255, 0.08) !important; }
+.section-opencode { border-color: rgba(255, 255, 255, 0.08) !important; }
+
+/* Active States */
+.section-openai.active-section {
+  border-color: rgba(52, 211, 153, 0.55) !important;
+  box-shadow: 0 0 70px rgba(52, 211, 153, 0.15);
+  background-color: rgba(2, 24, 18, 0.6) !important;
+}
+.section-openai.active-section .brand-watermark {
+  opacity: 0.45 !important; /* Increased active opacity for ChatGPT watermark */
+  transform: scale(1.2) rotate(8deg) !important;
+}
+
+.section-google.active-section {
+  border-color: rgba(96, 165, 250, 0.55) !important;
+  box-shadow: 0 0 70px rgba(96, 165, 250, 0.15);
+  background-color: rgba(3, 20, 53, 0.6) !important;
+}
+.section-google.active-section .brand-watermark {
+  opacity: 0.55 !important; /* Increased active opacity for Gemini watermark */
+  transform: scale(1.2) translateY(-10px) !important;
+}
+
+.section-anthropic.active-section {
+  border-color: rgba(251, 146, 60, 0.55) !important;
+  box-shadow: 0 0 70px rgba(251, 146, 60, 0.15);
+  background-color: rgba(26, 14, 7, 0.6) !important;
+}
+.section-anthropic.active-section .brand-watermark {
+  opacity: 0.40 !important; /* Increased active opacity for Claude watermark */
+  transform: scale(1.2) rotate(-8deg) !important;
+}
+
+.section-opencode.active-section {
+  border-color: rgba(129, 140, 248, 0.55) !important;
+  box-shadow: 0 0 70px rgba(129, 140, 248, 0.15);
+  background-color: rgba(14, 11, 38, 0.6) !important;
+}
+.section-opencode.active-section .brand-watermark {
+  opacity: 0.40 !important;
+  transform: scale(1.2) rotate(4deg) !important;
+}
+
+.section-contacto.active-section {
+  border-color: rgba(168, 85, 247, 0.55) !important;
+  box-shadow: 0 0 70px rgba(168, 85, 247, 0.15);
+  background-color: rgba(16, 7, 21, 0.6) !important;
+}
+
+/* Pulsing recommended card borders (Highly visual) */
+@keyframes pulse-openai {
+  0%, 100% { 
+    border-color: rgba(52, 211, 153, 0.5); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(52, 211, 153, 0.2), inset 0 0 12px rgba(52, 211, 153, 0.15); 
+  }
+  50% { 
+    border-color: rgba(52, 211, 153, 1); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(52, 211, 153, 0.6), inset 0 0 24px rgba(52, 211, 153, 0.3); 
+  }
+}
+.recommended-openai-pulse {
+  animation: pulse-openai 3s infinite ease-in-out;
+  border: 2px solid rgba(52, 211, 153, 0.9) !important;
+}
+
+@keyframes pulse-google {
+  0%, 100% { 
+    border-color: rgba(96, 165, 250, 0.5); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(96, 165, 250, 0.2), inset 0 0 12px rgba(96, 165, 250, 0.15); 
+  }
+  50% { 
+    border-color: rgba(96, 165, 250, 1); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(96, 165, 250, 0.6), inset 0 0 24px rgba(96, 165, 250, 0.3); 
+  }
+}
+.recommended-google-pulse {
+  animation: pulse-google 3s infinite ease-in-out;
+  border: 2px solid rgba(96, 165, 250, 0.9) !important;
+}
+
+@keyframes pulse-anthropic {
+  0%, 100% { 
+    border-color: rgba(251, 146, 60, 0.5); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(251, 146, 60, 0.2), inset 0 0 12px rgba(251, 146, 60, 0.15); 
+  }
+  50% { 
+    border-color: rgba(251, 146, 60, 1); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(251, 146, 60, 0.6), inset 0 0 24px rgba(251, 146, 60, 0.3); 
+  }
+}
+.recommended-anthropic-pulse {
+  animation: pulse-anthropic 3s infinite ease-in-out;
+  border: 2px solid rgba(251, 146, 60, 0.9) !important;
+}
+
+@keyframes pulse-opencode {
+  0%, 100% { 
+    border-color: rgba(129, 140, 248, 0.5); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(129, 140, 248, 0.2), inset 0 0 12px rgba(129, 140, 248, 0.15); 
+  }
+  50% { 
+    border-color: rgba(129, 140, 248, 1); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(129, 140, 248, 0.6), inset 0 0 24px rgba(129, 140, 248, 0.3); 
+  }
+}
+.recommended-opencode-pulse {
+  animation: pulse-opencode 3s infinite ease-in-out;
+  border: 2px solid rgba(129, 140, 248, 0.9) !important;
+}

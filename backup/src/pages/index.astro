@@ -1,0 +1,605 @@
+---
+import Layout from '../layouts/Layout.astro';
+import planes from '../data/planes.json';
+
+// WhatsApp contact number (international format without +)
+const WHATSAPP_NUMBER = "5359253999";
+
+// Grouping plans by provider
+const openaiPlanes = planes.filter(p => p.provider === 'OpenAI');
+const googlePlanes = planes.filter(p => p.provider === 'Google');
+const anthropicPlanes = planes.filter(p => p.provider === 'Anthropic');
+---
+
+<Layout>
+  <!-- Fixed Dynamic Background with transition -->
+  <div id="dynamic-bg" class="fixed inset-0 -z-20 bg-transition bg-[#090b11]"></div>
+  
+  <!-- Subtle ambient grid overlay -->
+  <div class="fixed inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-40"></div>
+
+  <!-- Header / Nav -->
+  <header class="border-b border-white/10 backdrop-blur-md bg-[#0b0f19]/60 sticky top-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo Top-Left -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-[#6d1e68] flex items-center justify-center font-bold text-lg text-white shadow-lg shadow-[#6d1e68]/30">
+          C
+        </div>
+        <span class="text-xl font-bold tracking-tight text-white font-display">
+          Carmay <span class="text-xs font-semibold text-[#6d1e68] uppercase tracking-wider ml-1 px-1.5 py-0.5 rounded bg-[#6d1e68]/10 border border-[#6d1e68]/20">IA</span>
+        </span>
+      </div>
+      
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="#openai" class="hover:text-emerald-400 transition-colors">ChatGPT</a>
+        <a href="#google" class="hover:text-blue-400 transition-colors">Gemini</a>
+        <a href="#anthropic" class="hover:text-orange-400 transition-colors">Claude</a>
+        <a href="#compromiso" class="hover:text-amber-400 transition-colors">Nuestro Compromiso</a>
+      </nav>
+
+      <!-- Golden Advice Button -->
+      <a 
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola! Me gustaría recibir asesoría personalizada para saber cuál es el mejor plan de IA según mis necesidades.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-yellow-600 text-slate-950 text-xs font-bold tracking-wide transition-all shadow-md shadow-amber-500/20 hover:scale-105 active:scale-95 flex items-center gap-2 border border-yellow-300/30"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 113.536 0V21h2v-2.243a5.002 5.002 0 01-3.536 0z" />
+        </svg>
+        Asesoría Gratuita
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="max-w-4xl mx-auto text-center px-6 pt-24 pb-20 relative">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#6d1e68]/15 border border-[#6d1e68]/30 text-purple-300 text-xs font-medium mb-6 scroll-reveal reveal-up">
+      <span class="flex h-2 w-2 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#6d1e68]"></span>
+      </span>
+      La Revolución de la IA al Alcance de Cuba
+    </div>
+    
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 font-display leading-[1.15] scroll-reveal reveal-up">
+      El mejor acceso a la <br/>
+      <span class="bg-gradient-to-r from-purple-400 via-indigo-300 to-blue-400 bg-clip-text text-transparent">
+        Tecnología Global en Cuba
+      </span>
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-350 max-w-2.5xl mx-auto mb-10 leading-relaxed scroll-reveal reveal-up">
+      Democratizamos el acceso a la Inteligencia Artificial. Te ofrecemos suscripciones oficiales a los motores más potentes del planeta, pagando de forma local y con **asesoramiento de uso incluido** sin costo.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center scroll-reveal reveal-up">
+      <a 
+        href="#openai" 
+        class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#6d1e68] hover:bg-[#862580] text-white font-bold shadow-lg shadow-[#6d1e68]/20 transition-all hover:-translate-y-0.5 active:translate-y-0 text-center"
+      >
+        Explorar Planes de IA
+      </a>
+      
+      <!-- Golden CTA Button -->
+      <a 
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola! Quisiera que me asesoren para saber qué plan de IA me conviene según mi trabajo.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-yellow-600 text-slate-950 font-bold shadow-lg shadow-amber-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0 text-center border border-yellow-300/30 flex items-center justify-center gap-2"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        Hablar con Asesor
+      </a>
+    </div>
+  </section>
+
+  <!-- 1. OPENAI SECTION -->
+  <section id="openai" class="relative max-w-6xl mx-auto px-6 py-24 scroll-mt-24 overflow-hidden rounded-3xl bg-slate-950/40 border-2 border-slate-800/80 section-openai mb-20">
+    <!-- Top-centered radial glow -->
+    <div class="absolute inset-0 pointer-events-none -z-20 bg-gradient-to-b from-emerald-950/20 via-transparent to-transparent"></div>
+    
+    <!-- Giant Watermark Logo -->
+    <div class="absolute right-[-10%] top-[-5%] text-emerald-400/8 pointer-events-none -z-10 w-[350px] h-[350px] md:w-[600px] md:h-[600px] brand-watermark animate-spin-slow">
+      <svg class="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+      </svg>
+    </div>
+
+    <!-- Header info (Redesigned for premium visual impact, larger text, custom borders) -->
+    <div class="border-b border-emerald-500/20 pb-10 mb-16 flex flex-col lg:flex-row lg:items-center justify-between gap-8 scroll-reveal reveal-left">
+      <div class="flex items-center gap-5">
+        <!-- Brand Icon -->
+        <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 shadow-lg shadow-emerald-500/15 animate-float">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944z"/>
+          </svg>
+        </div>
+        <div class="space-y-1">
+          <span class="text-xs md:text-sm font-black text-emerald-400 tracking-widest uppercase block">
+            SUSCRIPCIÓN PREMIUM
+          </span>
+          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight font-display mt-0.5">
+            ChatGPT de OpenAI
+          </h2>
+        </div>
+      </div>
+      <div class="lg:max-w-2xl text-slate-300 text-base md:text-lg leading-relaxed border-l-2 border-emerald-500/30 pl-4 lg:pl-6 py-1">
+        Líder indiscutible en razonamiento lógico, programación y análisis de datos. Ideal para desarrolladores que necesitan escribir y depurar código complejo, creadores de contenido técnico que buscan estructuración impecable, y profesionales que requieren procesar grandes volúmenes de datos con precisión algorítmica de nivel empresarial.
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {openaiPlanes.map((plan, index) => {
+        const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola! Estoy interesado en adquirir la *Suscripción de ${plan.name}* (${plan.provider}) por un valor de *${plan.finalPriceUSD} USD* (${plan.finalPriceCUP.toLocaleString('es-ES')} CUP) al mes. ¿Cómo podemos coordinar el pago?`)}`;
+        
+        // Alternating directional reveals for maximum dynamism
+        const revealClass = index % 3 === 0 ? 'reveal-left' : index % 3 === 1 ? 'reveal-up' : 'reveal-right';
+
+        return (
+          /* Mirror Card Effect: Glassmorphism with deep border glow & reflectivity */
+          <div class={`mirror-card mirror-card-openai p-8 rounded-3xl flex flex-col justify-between group overflow-hidden ${plan.popular ? 'recommended-openai-pulse' : ''} scroll-reveal ${revealClass}`}>
+            <!-- Reflective Overlay shine -->
+            <div class="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/[0.04] to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+            
+            {plan.popular && (
+              <div class="absolute top-0 right-8 -translate-y-1/2 px-4 py-1.5 rounded-full bg-emerald-400 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow-md shadow-emerald-500/30 z-10">
+                Recomendado
+              </div>
+            )}
+
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <h3 class="text-xl font-bold text-white tracking-tight group-hover:text-emerald-300 transition-colors font-display">{plan.name}</h3>
+                <div class="w-1.5 h-8 rounded bg-emerald-500 shadow-lg shadow-emerald-500/40"></div>
+              </div>
+
+              <p class="text-sm text-slate-400 mb-8 min-h-[44px] leading-relaxed">
+                {plan.description}
+              </p>
+
+              <!-- Pricing Display (Corporate Rule: "$25.00 USD | 17,500 CUP" - High Contrast + Bold Suscripción) -->
+              <div class="mb-8 p-4 rounded-2xl bg-slate-950/75 border border-white/10 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
+                <span class="text-[11px] font-black text-emerald-400 uppercase tracking-widest block mb-1">
+                  SUSCRIPCIÓN MENSUAL
+                </span>
+                <div class="text-xl md:text-2xl font-black text-white tracking-tight font-sans">
+                  ${plan.finalPriceUSD.toFixed(2)} USD <span class="text-emerald-400/80 mx-1">|</span> {plan.finalPriceCUP.toLocaleString('es-ES')} CUP
+                </div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-wider mt-1.5 font-bold">Tasa Fija 700 x 1</div>
+              </div>
+
+              <div class="border-t border-white/5 pt-6 mb-8">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Características del plan:</p>
+                <ul class="space-y-3.5">
+                  {plan.features.map((feature) => (
+                    <li class="flex items-start gap-3 text-sm text-slate-300">
+                      <svg class="w-4 h-4 text-emerald-400 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="leading-normal">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- WhatsApp Green Custom Button (Dark text for maximum legibility on bright green background) -->
+            <a 
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-3.5 px-4 rounded-xl font-black text-center transition-all duration-200 flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 bg-[#25D366] hover:bg-[#1ebe55] text-slate-950 shadow-lg shadow-[#25D366]/25 border border-emerald-400/30 font-sans tracking-wide"
+            >
+              <!-- WhatsApp SVG Logo -->
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.197 1.48 4.887 1.48 5.482 0 9.944-4.461 9.947-9.948.002-2.659-1.03-5.158-2.905-7.037C16.699 1.77 14.2 .73 11.545.728 6.062.728 1.6 5.189 1.597 10.677c-.001 1.77.476 3.498 1.38 5.03l-.995 3.637 3.733-.979.332.197zm11.386-7.854c-.302-.15-1.785-.882-2.062-.982-.277-.1-.478-.15-.679.15-.201.3-.778.982-.954 1.183-.176.2-.352.225-.654.075-.302-.15-1.276-.47-2.43-1.499-.898-.8-1.503-1.79-1.679-2.09-.176-.3-.019-.462.131-.611.135-.134.302-.35.453-.524.151-.175.201-.3.302-.5.101-.2.05-.375-.025-.526-.075-.15-.679-1.636-.93-2.24-.244-.587-.493-.507-.679-.516-.176-.008-.377-.01-.578-.01-.201 0-.527.075-.803.375-.276.3-1.055 1.03-1.055 2.512s1.08 2.922 1.23 3.122c.15.2 2.127 3.248 5.153 4.553.72.31 1.282.495 1.72.634.724.23 1.381.198 1.901.12.58-.087 1.785-.73 2.037-1.435.252-.705.252-1.31.176-1.435-.076-.125-.277-.2-5.78-.35z"/>
+              </svg>
+              Adquirir vía WhatsApp
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- 2. GOOGLE SECTION -->
+  <section id="google" class="relative max-w-6xl mx-auto px-6 py-24 scroll-mt-24 overflow-hidden rounded-3xl bg-slate-950/40 border-2 border-slate-800/80 section-google mb-20">
+    <!-- Top-centered radial glow -->
+    <div class="absolute inset-0 pointer-events-none -z-20 bg-gradient-to-b from-blue-950/20 via-transparent to-transparent"></div>
+
+    <!-- Giant Watermark Logo (Gemini 4-Point Sparkle) -->
+    <div class="absolute right-[-10%] top-[-5%] text-blue-400/8 pointer-events-none -z-10 w-[350px] h-[350px] md:w-[600px] md:h-[600px] brand-watermark animate-float">
+      <svg class="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3c0 4.5 3.5 8 8 8-4.5 0-8 3.5-8 8 0-4.5-3.5-8-8-8 4.5 0 8-3.5 8-8z"/>
+      </svg>
+    </div>
+
+    <!-- Header info (Redesigned for premium visual impact, larger text, custom borders) -->
+    <div class="border-b border-blue-500/20 pb-10 mb-16 flex flex-col lg:flex-row lg:items-center justify-between gap-8 scroll-reveal reveal-left">
+      <div class="flex items-center gap-5">
+        <!-- Brand Icon -->
+        <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 shadow-lg shadow-blue-500/15 animate-float">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3c0 4.5 3.5 8 8 8-4.5 0-8 3.5-8 8 0-4.5-3.5-8-8-8 4.5 0 8-3.5 8-8z"/>
+          </svg>
+        </div>
+        <div class="space-y-1">
+          <span class="text-xs md:text-sm font-black text-blue-400 tracking-widest uppercase block">
+            SUSCRIPCIÓN PREMIUM
+          </span>
+          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight font-display mt-0.5">
+            Gemini de Google
+          </h2>
+        </div>
+      </div>
+      <div class="lg:max-w-2xl text-slate-300 text-base md:text-lg leading-relaxed border-l-2 border-blue-500/30 pl-4 lg:pl-6 py-1">
+        Máxima integración y productividad nativa. Diseñado para conectarse directamente con todo tu ecosistema de Google (Drive, Docs, Gmail y Sheets) y optimizar flujos de trabajo colaborativos. Destaca por su ventana de contexto masiva para analizar documentos extensos de cientos de páginas y la velocidad de procesamiento de Google Cloud.
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {googlePlanes.map((plan, index) => {
+        const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola! Estoy interesado en adquirir la *Suscripción de ${plan.name}* (${plan.provider}) por un valor de *${plan.finalPriceUSD} USD* (${plan.finalPriceCUP.toLocaleString('es-ES')} CUP) al mes. ¿Cómo podemos coordinar el pago?`)}`;
+
+        // Alternating directional reveals for maximum dynamism
+        const revealClass = index % 3 === 0 ? 'reveal-left' : index % 3 === 1 ? 'reveal-up' : 'reveal-right';
+
+        return (
+          /* Mirror Card Effect: Glassmorphism with deep border glow & reflectivity */
+          <div class={`mirror-card mirror-card-google p-8 rounded-3xl flex flex-col justify-between group overflow-hidden ${plan.popular ? 'recommended-google-pulse' : ''} scroll-reveal ${revealClass}`}>
+            <!-- Reflective Overlay shine -->
+            <div class="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/[0.04] to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+            
+            {plan.popular && (
+              <div class="absolute top-0 right-8 -translate-y-1/2 px-4 py-1.5 rounded-full bg-blue-500 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow-md shadow-blue-500/30 z-10">
+                Recomendado
+              </div>
+            )}
+
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <h3 class="text-xl font-bold text-white tracking-tight group-hover:text-blue-300 transition-colors font-display">{plan.name}</h3>
+                <div class="w-1.5 h-8 rounded bg-blue-500 shadow-lg shadow-blue-500/40"></div>
+              </div>
+
+              <p class="text-sm text-slate-400 mb-8 min-h-[44px] leading-relaxed">
+                {plan.description}
+              </p>
+
+              <!-- Pricing Display (Corporate Rule: "$25.00 USD | 17,500 CUP" - High Contrast + Bold Suscripción) -->
+              <div class="mb-8 p-4 rounded-2xl bg-slate-950/75 border border-white/10 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+                <span class="text-[11px] font-black text-blue-400 uppercase tracking-widest block mb-1">
+                  SUSCRIPCIÓN MENSUAL
+                </span>
+                <div class="text-xl md:text-2xl font-black text-white tracking-tight font-sans">
+                  ${plan.finalPriceUSD.toFixed(2)} USD <span class="text-blue-400/80 mx-1">|</span> {plan.finalPriceCUP.toLocaleString('es-ES')} CUP
+                </div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-wider mt-1.5 font-bold">Tasa Fija 700 x 1</div>
+              </div>
+
+              <div class="border-t border-white/5 pt-6 mb-8">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Características del plan:</p>
+                <ul class="space-y-3.5">
+                  {plan.features.map((feature) => (
+                    <li class="flex items-start gap-3 text-sm text-slate-300">
+                      <svg class="w-4 h-4 text-blue-400 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="leading-normal">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- WhatsApp Green Custom Button (Dark text for maximum legibility on bright green background) -->
+            <a 
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-3.5 px-4 rounded-xl font-black text-center transition-all duration-200 flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 bg-[#25D366] hover:bg-[#1ebe55] text-slate-950 shadow-lg shadow-[#25D366]/25 border border-emerald-400/30 font-sans tracking-wide"
+            >
+              <!-- WhatsApp SVG Logo -->
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.197 1.48 4.887 1.48 5.482 0 9.944-4.461 9.947-9.948.002-2.659-1.03-5.158-2.905-7.037C16.699 1.77 14.2 .73 11.545.728 6.062.728 1.6 5.189 1.597 10.677c-.001 1.77.476 3.498 1.38 5.03l-.995 3.637 3.733-.979.332.197zm11.386-7.854c-.302-.15-1.785-.882-2.062-.982-.277-.1-.478-.15-.679.15-.201.3-.778.982-.954 1.183-.176.2-.352.225-.654.075-.302-.15-1.276-.47-2.43-1.499-.898-.8-1.503-1.79-1.679-2.09-.176-.3-.019-.462.131-.611.135-.134.302-.35.453-.524.151-.175.201-.3.302-.5.101-.2.05-.375-.025-.526-.075-.15-.679-1.636-.93-2.24-.244-.587-.493-.507-.679-.516-.176-.008-.377-.01-.578-.01-.201 0-.527.075-.803.375-.276.3-1.055 1.03-1.055 2.512s1.08 2.922 1.23 3.122c.15.2 2.127 3.248 5.153 4.553.72.31 1.282.495 1.72.634.724.23 1.381.198 1.901.12.58-.087 1.785-.73 2.037-1.435.252-.705.252-1.31.176-1.435-.076-.125-.277-.2-5.78-.35z"/>
+              </svg>
+              Adquirir vía WhatsApp
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- 3. ANTHROPIC SECTION -->
+  <!-- Anthropic Style: Warm typography (Lora Serif font for headings, retro-modern look) -->
+  <section id="anthropic" class="relative max-w-6xl mx-auto px-6 py-24 scroll-mt-24 overflow-hidden rounded-3xl bg-slate-950/40 border-2 border-slate-800/80 section-anthropic mb-20 font-serif">
+    <!-- Top-centered radial glow -->
+    <div class="absolute inset-0 pointer-events-none -z-20 bg-gradient-to-b from-orange-950/15 via-transparent to-transparent"></div>
+
+    <!-- Giant Watermark Logo -->
+    <div class="absolute right-[-10%] top-[-5%] text-orange-400/6 pointer-events-none -z-10 w-[350px] h-[350px] md:w-[600px] md:h-[600px] brand-watermark animate-float">
+      <svg class="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+        <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114"/>
+      </svg>
+    </div>
+
+    <!-- Header info (Redesigned for premium visual impact, larger text, custom borders) -->
+    <div class="border-b border-orange-500/20 pb-10 mb-16 flex flex-col lg:flex-row lg:items-center justify-between gap-8 scroll-reveal reveal-left">
+      <div class="flex items-center gap-5">
+        <!-- Brand Icon -->
+        <div class="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0 shadow-lg shadow-orange-500/15 animate-float">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+            <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035"/>
+          </svg>
+        </div>
+        <div class="space-y-1 font-sans">
+          <span class="text-xs md:text-sm font-black text-orange-400 tracking-widest uppercase block">
+            SUSCRIPCIÓN PREMIUM
+          </span>
+          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight font-display mt-0.5">
+            Claude de Anthropic
+          </h2>
+        </div>
+      </div>
+      <div class="lg:max-w-2xl text-slate-300 text-base md:text-lg leading-relaxed border-l-2 border-orange-500/30 pl-4 lg:pl-6 py-1">
+        El estándar de oro en redacción humana y comprensión lingüística compleja. Claude destaca por sus respuestas naturales y libres de clichés, siendo la herramienta favorita de escritores creativos, analistas literarios e investigadores. Su capacidad para interpretar matices emocionales y realizar análisis cualitativos no tiene comparación.
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {anthropicPlanes.map((plan, index) => {
+        const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola! Estoy interesado en adquirir la *Suscripción de ${plan.name}* (${plan.provider}) por un valor de *${plan.finalPriceUSD} USD* (${plan.finalPriceCUP.toLocaleString('es-ES')} CUP) al mes. ¿Cómo podemos coordinar el pago?`)}`;
+
+        // Alternating directional reveals for maximum dynamism
+        const revealClass = index % 3 === 0 ? 'reveal-left' : index % 3 === 1 ? 'reveal-up' : 'reveal-right';
+
+        return (
+          /* Mirror Card Effect: Glassmorphism with deep border glow & reflectivity */
+          <div class={`mirror-card mirror-card-anthropic p-8 rounded-3xl flex flex-col justify-between group overflow-hidden ${plan.popular ? 'recommended-anthropic-pulse' : ''} scroll-reveal ${revealClass}`}>
+            <!-- Reflective Overlay shine -->
+            <div class="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/[0.04] to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+            
+            {plan.popular && (
+              <div class="absolute top-0 right-8 -translate-y-1/2 px-4 py-1.5 rounded-full bg-orange-500 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow-md shadow-orange-500/30 z-10 font-sans">
+                Recomendado
+              </div>
+            )}
+
+            <div>
+              <div class="flex justify-between items-start mb-6 font-sans">
+                <h3 class="text-xl font-bold text-white tracking-tight group-hover:text-orange-300 transition-colors">{plan.name}</h3>
+                <div class="w-1.5 h-8 rounded bg-orange-500 shadow-lg shadow-orange-500/40"></div>
+              </div>
+
+              <p class="text-sm text-slate-400 mb-8 min-h-[44px] leading-relaxed">
+                {plan.description}
+              </p>
+
+              <!-- Pricing Display (Corporate Rule: "$25.00 USD | 17,500 CUP" - High Contrast + Bold Suscripción) -->
+              <div class="mb-8 p-4 rounded-2xl bg-slate-950/75 border border-white/10 text-center relative overflow-hidden font-sans">
+                <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-orange-400 to-transparent"></div>
+                <span class="text-[11px] font-black text-orange-400 uppercase tracking-widest block mb-1">
+                  SUSCRIPCIÓN MENSUAL
+                </span>
+                <div class="text-xl md:text-2xl font-black text-white tracking-tight">
+                  ${plan.finalPriceUSD.toFixed(2)} USD <span class="text-orange-400/80 mx-1">|</span> {plan.finalPriceCUP.toLocaleString('es-ES')} CUP
+                </div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-wider mt-1.5 font-bold">Tasa Fija 700 x 1</div>
+              </div>
+
+              <div class="border-t border-white/5 pt-6 mb-8 font-sans">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Características del plan:</p>
+                <ul class="space-y-3.5">
+                  {plan.features.map((feature) => (
+                    <li class="flex items-start gap-3 text-sm text-slate-300">
+                      <svg class="w-4 h-4 text-orange-400 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="leading-normal">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- WhatsApp Green Custom Button (Dark text for maximum legibility on bright green background) -->
+            <a 
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-3.5 px-4 rounded-xl font-black text-center transition-all duration-200 flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 bg-[#25D366] hover:bg-[#1ebe55] text-slate-950 shadow-lg shadow-[#25D366]/25 border border-emerald-400/30 font-sans tracking-wide"
+            >
+              <!-- WhatsApp SVG Logo -->
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.197 1.48 4.887 1.48 5.482 0 9.944-4.461 9.947-9.948.002-2.659-1.03-5.158-2.905-7.037C16.699 1.77 14.2 .73 11.545.728 6.062.728 1.6 5.189 1.597 10.677c-.001 1.77.476 3.498 1.38 5.03l-.995 3.637 3.733-.979.332.197zm11.386-7.854c-.302-.15-1.785-.882-2.062-.982-.277-.1-.478-.15-.679.15-.201.3-.778.982-.954 1.183-.176.2-.352.225-.654.075-.302-.15-1.276-.47-2.43-1.499-.898-.8-1.503-1.79-1.679-2.09-.176-.3-.019-.462.131-.611.135-.134.302-.35.453-.524.151-.175.201-.3.302-.5.101-.2.05-.375-.025-.526-.075-.15-.679-1.636-.93-2.24-.244-.587-.493-.507-.679-.516-.176-.008-.377-.01-.578-.01-.201 0-.527.075-.803.375-.276.3-1.055 1.03-1.055 2.512s1.08 2.922 1.23 3.122c.15.2 2.127 3.248 5.153 4.553.72.31 1.282.495 1.72.634.724.23 1.381.198 1.901.12.58-.087 1.785-.73 2.037-1.435.252-.705.252-1.31.176-1.435-.076-.125-.277-.2-5.78-.35z"/>
+              </svg>
+              Adquirir vía WhatsApp
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Compromiso Section -->
+  <section id="compromiso" class="max-w-4xl mx-auto px-6 py-20 scroll-mt-24 text-center scroll-reveal reveal-up">
+    <div class="p-8 md:p-12 rounded-3xl bg-slate-950/40 border-2 border-slate-800/80 backdrop-blur-xl relative overflow-hidden">
+      <!-- Carmay Purple radial glow -->
+      <div class="absolute inset-0 pointer-events-none -z-10 bg-radial-at-b from-[#6d1e68]/15 via-transparent to-transparent"></div>
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6d1e68]/20 border border-[#6d1e68]/30 text-purple-300 text-xs font-semibold mb-6">
+        Nuestro Compromiso
+      </div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6 font-display">
+        Rompiendo el Bloqueo Tecnológico en Cuba
+      </h2>
+      
+      <p class="text-slate-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
+        La Inteligencia Artificial representa la mayor revolución tecnológica de las últimas décadas. Nos comprometemos a traer esta modernidad a Cuba, democratizando el acceso a herramientas premium para estudiantes, programadores, creadores y profesionales cubanos. Queremos que tu única limitación sea tu imaginación, no tu ubicación geográfica.
+      </p>
+
+      <!-- Advice note -->
+      <div class="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/25 max-w-xl mx-auto text-left flex gap-4 items-start mb-8 font-sans">
+        <svg class="w-6 h-6 text-amber-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <div>
+          <h4 class="text-sm font-bold text-amber-400 font-sans">Asesoría de Configuración Incluida</h4>
+          <p class="text-xs text-slate-400 mt-1 leading-relaxed font-sans">
+            No solo activamos tu plan. Nuestro equipo te asesora de forma totalmente gratuita en el uso de VPNs, optimización de prompts y configuraciones iniciales para asegurar que puedas usar la herramienta sin interrupciones desde Cuba.
+          </p>
+        </div>
+      </div>
+
+      <!-- Golden Advice Button -->
+      <a 
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola! Quiero que me asesoren sobre qué inteligencia artificial elegir y cómo configurarla desde Cuba.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-yellow-600 text-slate-950 font-bold tracking-wide transition-all shadow-lg shadow-amber-500/25 hover:-translate-y-0.5 active:translate-y-0 text-center border border-yellow-300/30 gap-2 items-center font-sans"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+        Recibir Asesoría y Activar IA
+      </a>
+    </div>
+  </section>
+
+  <!-- Como Funciona Section -->
+  <section id="como-funciona" class="bg-slate-950/40 border-y-2 border-slate-800/80 py-24 scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal reveal-up">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Cómo es el Proceso?</h2>
+        <p class="text-slate-400">
+          Un flujo transparente y seguro diseñado especialmente para las facilidades de pago en Cuba.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="p-6 rounded-2xl bg-slate-950/60 border-2 border-slate-800/60 scroll-reveal reveal-left">
+          <div class="w-10 h-10 rounded-full bg-[#6d1e68]/15 border border-[#6d1e68]/30 flex items-center justify-center font-bold text-purple-400 mb-6">1</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Selecciona tu IA</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Elige tu IA preferida en base a las ventajas y los planes disponibles.</p>
+        </div>
+        
+        <div class="p-6 rounded-2xl bg-slate-950/60 border-2 border-slate-800/60 scroll-reveal reveal-left">
+          <div class="w-10 h-10 rounded-full bg-[#6d1e68]/15 border border-[#6d1e68]/30 flex items-center justify-center font-bold text-purple-400 mb-6">2</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Contacta al Gestor</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Presiona el botón de compra para iniciar un chat privado con un gestor por WhatsApp.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-950/60 border-2 border-slate-800/60 scroll-reveal reveal-right">
+          <div class="w-10 h-10 rounded-full bg-[#6d1e68]/15 border border-[#6d1e68]/30 flex items-center justify-center font-bold text-purple-400 mb-6">3</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Paga Localmente</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Paga en MLC, CUP (efectivo o transferencia via Transfermóvil) según la tasa fijada de mutuo acuerdo.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-950/60 border-2 border-slate-800/60 scroll-reveal reveal-right">
+          <div class="w-10 h-10 rounded-full bg-[#6d1e68]/15 border border-[#6d1e68]/30 flex items-center justify-center font-bold text-purple-400 mb-6">4</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Disfruta el Acceso</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Activamos tu plan directamente aplicando nuestros métodos de pago seguros. ¡Listo para usar!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-12 bg-slate-950/80">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-[#6d1e68] flex items-center justify-center font-bold text-sm text-white">
+          C
+        </div>
+        <span class="font-bold tracking-tight text-white">Carmay IA</span>
+      </div>
+      <p class="text-xs text-slate-500">
+        © {new Date().getFullYear()} Carmay IA. Este servicio es de carácter intermediario y no está afiliado oficialmente con OpenAI, Google ni Anthropic.
+      </p>
+    </div>
+  </footer>
+
+  <!-- JS for Dynamic background color shift, section active states and scroll-reveal animations -->
+  <script>
+    const dynamicBg = document.getElementById('dynamic-bg');
+    const sections = document.querySelectorAll('section[id]');
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+    const bgMap = {
+      openai: 'bg-[#04120e]',       // Deep forest emerald green
+      google: 'bg-[#050f24]',       // Deep tech space blue
+      anthropic: 'bg-[#140b06]',    // Deep warm copper clay
+      compromiso: 'bg-[#0e0712]',   // Deep Carmay purple
+      'como-funciona': 'bg-[#090b11]'
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -40% 0px', // Actives when section hits the center of screen
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          
+          // Toggle active-section class for themed styling (glow + watermark highlight)
+          sections.forEach(s => s.classList.remove('active-section'));
+          entry.target.classList.add('active-section');
+
+          if (bgMap[id]) {
+            dynamicBg.className = 'fixed inset-0 -z-20 bg-transition ' + bgMap[id];
+          } else {
+            dynamicBg.className = 'fixed inset-0 -z-20 bg-transition bg-[#090b11]';
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // Scroll reveal logic (entry and exit upwards transitions)
+    function checkScroll() {
+      const viewportHeight = window.innerHeight;
+      scrollRevealElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        
+        // Element is scrolled past the top (exit upwards)
+        if (rect.bottom < 120) {
+          el.classList.remove('visible');
+          el.classList.add('scrolled-up');
+        } 
+        // Element is visible in the viewport
+        else if (rect.top <= viewportHeight - 65) {
+          el.classList.add('visible');
+          el.classList.remove('scrolled-up');
+        } 
+        // Element is below the viewport
+        else {
+          el.classList.remove('visible', 'scrolled-up');
+        }
+      });
+    }
+
+    // Bind scroll listeners
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll, { passive: true });
+    
+    // Initial runs to trigger visible states on load
+    checkScroll();
+    setTimeout(checkScroll, 100);
+    setTimeout(checkScroll, 400);
+  </script>
+</Layout>
